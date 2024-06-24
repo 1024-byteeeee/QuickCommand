@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "QuickCommand",
+  "authors": [
+    "1024_byteeeee"
+  ],
+  "contact": {
+    "homepage": "https://github.com/1024-byteeeee/QuickCommand",
+    "sources": "https://github.com/1024-byteeeee/QuickCommand",
+    "issues": "https://github.com/1024-byteeeee/QuickCommand/issues"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/quickcommand/icon.png",
+  "entrypoints": {
+    "main": [
+      "top.byteeeee.quickcommand.QuickCommand"
+    ],
+    "client": [
+      "top.byteeeee.quickcommand.QuickCommandClient"
+    ]
+  },
+  "mixins": [
+    "quickcommand.mixins.json"
+  ],
+  "depends": {
+    "minecraft": "${minecraft_dependency}",
+    "fabric": "${fabric_api_dependency}"
+  }
+}

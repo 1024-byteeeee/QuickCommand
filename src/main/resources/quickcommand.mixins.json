@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "top.byteeeee.quickcommand.mixin",
+  "compatibilityLevel": "/*JAVA_VERSION*/",
+  "mixins": [
+  ],
+  "client": [
+    "translation.LanguageManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
