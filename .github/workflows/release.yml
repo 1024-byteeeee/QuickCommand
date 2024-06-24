@@ -105,8 +105,8 @@ jobs:
       - name: Publish Minecraft Mods
         uses: Kir-Antipov/mc-publish@v3.3.0
         with:
-          # modrinth-id: ---
-          # modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
+          modrinth-id: e3aDvLEm
+          modrinth-token: ${{ secrets.MODRINTH_API_TOKEN }}
 
           # curseforge-id: ---
           # curseforge-token: ${{ secrets.CURSEFORGE_API_TOKEN }}
