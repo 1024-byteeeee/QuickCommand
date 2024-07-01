@@ -36,7 +36,7 @@ import top.byteeeee.quickcommand.key.RegisterKeyBinding;
 @Environment(EnvType.CLIENT)
 public class QuickCommandClient implements ClientModInitializer {
     public static final String modName = "QuickCommand";
-    public static final String modVersion = "0.0.1";
+    public static final String modVersion = "1.0.0";
     public static final Logger LOGGER = LogManager.getLogger(modName);
     public static MinecraftClient minecraftClient;
 
