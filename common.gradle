@@ -43,10 +43,6 @@ loom {
 	}
 }
 
-remapJar {
-	remapperIsolation = true
-}
-
 JavaVersion JAVA_VERSION
 if (mcVersion >= 12005) {
 	JAVA_VERSION = JavaVersion.VERSION_21
