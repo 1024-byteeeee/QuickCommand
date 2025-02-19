@@ -25,8 +25,13 @@ import com.google.gson.GsonBuilder;
 
 import net.fabricmc.loader.api.FabricLoader;
 
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.WorldSavePath;
+
+import top.byteeeee.quickcommand.QuickCommand;
 import top.byteeeee.quickcommand.QuickCommandClient;
-import top.byteeeee.quickcommand.commands.quickcommandcommand.QuickCommandCommand;
+import top.byteeeee.quickcommand.helpers.CommandHelper;
+import top.byteeeee.quickcommand.helpers.EnvironmentHelper;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -38,19 +43,19 @@ import java.util.Map;
 
 public class QuickCommandConfig {
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("QuickCommand");
-    private static final String CONFIG_FILE = CONFIG_PATH.resolve("QuickCommandConfig.json").toString();
+    private static final String CONFIG_FILE = EnvironmentHelper.isServer() ? getSavePath(QuickCommand.getInstance().minecraftServer): CONFIG_PATH.resolve("QuickCommandConfig.json").toString();
 
     public static void loadFromJson() {
         Gson gson = new Gson();
         Path path = Paths.get(CONFIG_FILE);
-        QuickCommandCommand.QUICK_COMMAND_MAP.clear();
+        CommandHelper.QUICK_COMMAND_MAP.clear();
         if (Files.exists(path)) {
             try {
                 String json = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
                 ConfigData configData = gson.fromJson(json, ConfigData.class);
                 if (configData != null) {
-                    QuickCommandCommand.QUICK_COMMAND_MAP.putAll(configData.commandMap);
-                    QuickCommandCommand.displayCommandInList = configData.displayCommandInList;
+                    CommandHelper.QUICK_COMMAND_MAP.putAll(configData.commandMap);
+                    CommandHelper.displayCommandInList = configData.displayCommandInList;
                 }
             } catch (IOException e) {
                 QuickCommandClient.LOGGER.warn("Failed to load config", e);
@@ -62,7 +67,7 @@ public class QuickCommandConfig {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         ConfigData configData = new ConfigData();
         configData.commandMap = new LinkedHashMap<>(commandMap);
-        configData.displayCommandInList = QuickCommandCommand.displayCommandInList;
+        configData.displayCommandInList = CommandHelper.displayCommandInList;
         String json = gson.toJson(configData);
         try {
             Path path = Paths.get(CONFIG_FILE);
@@ -71,6 +76,10 @@ public class QuickCommandConfig {
         } catch (IOException e) {
             QuickCommandClient.LOGGER.warn("Failed to save config", e);
         }
+    }
+
+    public static String getSavePath(MinecraftServer server) {
+        return server.getSavePath(WorldSavePath.ROOT).resolve("quickCommand/quickCommand" + ".json").toString();
     }
 
     private static class ConfigData {

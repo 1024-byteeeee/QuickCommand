@@ -2,7 +2,7 @@
  * This file is part of the QuickCommand project, licensed under the
  * GNU Lesser General Public License v3.0
  *
- * Copyright (C) 2024 1024_byteeeee and contributors
+ * Copyright (C) 2025 1024_byteeeee and contributors
  *
  * QuickCommand is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,32 +18,21 @@
  * along with QuickCommand. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package top.byteeeee.quickcommand;
-
-import net.fabricmc.api.ModInitializer;
+package top.byteeeee.quickcommand.mixin;
 
 import net.minecraft.server.MinecraftServer;
 
-import top.byteeeee.quickcommand.commands.RegisterCommands;
-import top.byteeeee.quickcommand.helpers.CommandHelper;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-public class QuickCommand implements ModInitializer {
-	public static final String modName = "QuickCommand";
-	public static final String modVersion = "1.1.0";
-	public MinecraftServer minecraftServer;
-	private static final QuickCommand INSTANCE = new QuickCommand();
+import top.byteeeee.quickcommand.QuickCommand;
 
-	public static QuickCommand getInstance() {
-		return INSTANCE;
-	}
-
-	@Override
-	public void onInitialize() {
-		RegisterCommands.registerServerCommands();
-	}
-
-	public void onServerLoadedWorlds(MinecraftServer server) {
-		minecraftServer = server;
-		CommandHelper.refreshListMemory();
-	}
+@Mixin(MinecraftServer.class)
+public abstract class MinecraftServerMixin {
+    @Inject(method = "loadWorld", at = @At("TAIL"))
+    private void onLoadWorld(CallbackInfo ci) {
+        QuickCommand.getInstance().onServerLoadedWorlds((MinecraftServer) (Object) this);
+    }
 }

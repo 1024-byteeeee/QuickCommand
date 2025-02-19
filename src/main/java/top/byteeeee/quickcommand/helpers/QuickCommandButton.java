@@ -23,14 +23,20 @@ package top.byteeeee.quickcommand.helpers;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
-import top.byteeeee.quickcommand.translations.TranslationText;
+import top.byteeeee.quickcommand.translations.Translator;
 import top.byteeeee.quickcommand.utils.MessageTextEventUtils.ClickEventUtil;
 import top.byteeeee.quickcommand.utils.MessageTextEventUtils.HoverEventUtil;
 import top.byteeeee.quickcommand.utils.Messenger;
 
 public class QuickCommandButton {
+    private static  final Translator translator = new Translator("button");
+
+    private static String cmd() {
+        return EnvironmentHelper.getCommandPrefix() + " ";
+    }
+
     public static Text runCommandButton(String command) {
-        Text hoverText = Messenger.s(TranslationText.runButtonHoverText + command).formatted(Formatting.YELLOW);
+        Text hoverText = translator.tr("runButtonHoverText").append(Messenger.s(command)).formatted(Formatting.YELLOW);
         return
             Messenger.s("[▷]").setStyle(
                 Style.EMPTY.withColor(Formatting.AQUA).
@@ -40,17 +46,18 @@ public class QuickCommandButton {
     }
 
     public static Text removeCommandButton(String name) {
-        Text hoverText = Messenger.s(TranslationText.removeButtonHoverText + name).formatted(Formatting.YELLOW);
+        String command = cmd() + "remove \"" + name + "\"";
+        Text hoverText = translator.tr("removeButtonHoverText").append(Messenger.s(name)).formatted(Formatting.YELLOW);
         return
             Messenger.s(" [×]").setStyle(
                 Style.EMPTY.withColor(Formatting.RED).
-                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, String.format("/quickCommand remove \"%s\"", name))).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, command)).
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }
 
     public static Text copyButton(String command) {
-        Text hoverText = Messenger.s(TranslationText.copyButtonHoverText + command).formatted(Formatting.YELLOW);
+        Text hoverText = translator.tr("copyButtonHoverText").append(Messenger.s(command)).formatted(Formatting.YELLOW);
         return
             Messenger.s(" [C] ").setStyle(
                 Style.EMPTY.withColor(Formatting.GREEN).
@@ -60,71 +67,78 @@ public class QuickCommandButton {
     }
 
     public static Text addCommandButton() {
-        Text hoverText = Messenger.s(TranslationText.addButtonHoverText).formatted(Formatting.YELLOW);
+        String command = cmd() + "add ";
+        Text hoverText = translator.tr("addButtonHoverText").formatted(Formatting.YELLOW);
         return
-            Messenger.s(TranslationText.addButtonText).setStyle(
+            translator.tr("addButtonText").setStyle(
                 Style.EMPTY.withColor(Formatting.GREEN).
-                withClickEvent(ClickEventUtil.event(ClickEventUtil.SUGGEST_COMMAND, "/quickCommand add ")).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.SUGGEST_COMMAND, command)).
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }
 
     public static Text removeAllButton() {
-        Text hoverText = Messenger.s(TranslationText.removeAllButtonHoverText).formatted(Formatting.YELLOW);
+        String command = cmd() + "removeAll";
+        Text hoverText = translator.tr("removeAllButtonHoverText").formatted(Formatting.YELLOW);
         return
-            Messenger.s(TranslationText.removeAllButtonText).setStyle(
+            translator.tr("removeAllButtonText").setStyle(
                 Style.EMPTY.withColor(Formatting.RED).
-                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, "/quickCommand removeAll")).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, command)).
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }
 
     public static Text helpButton() {
-        Text hoverText = Messenger.s(TranslationText.helpButtonHoverText).formatted(Formatting.YELLOW);
+        String command = cmd() + "help";
+        Text hoverText = translator.tr("helpButtonHoverText").formatted(Formatting.YELLOW);
         return
-            Messenger.s(TranslationText.helpButtonText).setStyle(
+            translator.tr("helpButtonText").setStyle(
                 Style.EMPTY.withColor(Formatting.AQUA).
-                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, "/quickCommand help")).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, command)).
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }
 
     public static Text swapButton() {
-        Text hoverText = Messenger.s(TranslationText.swapButtonHoverText).formatted(Formatting.YELLOW);
+        String command = cmd() + "swap ";
+        Text hoverText = translator.tr("swapButtonHoverText").formatted(Formatting.YELLOW);
         return
-            Messenger.s(TranslationText.swapButtonText).setStyle(
+            translator.tr("swapButtonText").setStyle(
                 Style.EMPTY.withColor(Formatting.YELLOW).
-                withClickEvent(ClickEventUtil.event(ClickEventUtil.SUGGEST_COMMAND, "/quickCommand swap ")).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.SUGGEST_COMMAND, command)).
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }
 
     public static Text refreshListButton() {
-        Text hoverText = Messenger.s(TranslationText.refreshListButtonHoverText).formatted(Formatting.YELLOW);
+        String command = cmd() + "listWithRun";
+        Text hoverText = translator.tr("refreshListButtonHoverText").formatted(Formatting.YELLOW);
         return
-            Messenger.s(TranslationText.refreshListButtonText).setStyle(
+            translator.tr("refreshListButtonText").setStyle(
                 Style.EMPTY.withColor(Formatting.GOLD).
-                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, "/quickCommand listWithRun")).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, command)).
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }
 
     public static Text setDisplayCommandInListYesButton() {
-        Text hoverText = Messenger.s(TranslationText.setDisplayCommandInListYesButtonHoverText).formatted(Formatting.YELLOW);
+        String command = cmd() + "displayCommandInList true";
+        Text hoverText = translator.tr("setDisplayCommandInListYesButtonHoverText").formatted(Formatting.YELLOW);
         return
             Messenger.s("[YES]").setStyle(
                 Style.EMPTY.withColor(Formatting.GREEN).
-                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, "/quickCommand displayCommandInList true")).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, command)).
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }
 
     public static Text setDisplayCommandInListNoButton() {
-        Text hoverText = Messenger.s(TranslationText.setDisplayCommandInListNoButtonHoverText).formatted(Formatting.YELLOW);
+        String command = cmd() + "displayCommandInList false";
+        Text hoverText = translator.tr("setDisplayCommandInListNoButtonHoverText").formatted(Formatting.YELLOW);
         return
             Messenger.s(" [NO]").setStyle(
                 Style.EMPTY.withColor(Formatting.RED).
-                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, "/quickCommand displayCommandInList false")).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, command)).
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }

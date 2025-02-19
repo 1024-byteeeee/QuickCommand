@@ -4,10 +4,9 @@
   "package": "top.byteeeee.quickcommand.mixin",
   "compatibilityLevel": "/*JAVA_VERSION*/",
   "mixins": [
+    "MinecraftServerMixin"
   ],
-  "client": [
-    "translation.LanguageManagerMixin"
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }

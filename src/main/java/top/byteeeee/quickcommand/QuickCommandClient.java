@@ -35,17 +35,15 @@ import top.byteeeee.quickcommand.key.RegisterKeyBinding;
 
 @Environment(EnvType.CLIENT)
 public class QuickCommandClient implements ClientModInitializer {
-    public static final String modName = "QuickCommand";
-    public static final String modVersion = "1.0.3";
-    public static final Logger LOGGER = LogManager.getLogger(modName);
+    public static final Logger LOGGER = LogManager.getLogger(QuickCommand.modName);
     public static MinecraftClient minecraftClient;
 
     @Override
     public void onInitializeClient() {
-        LOGGER.info(String.format("%s v%s loaded!", modName, modVersion));
+        LOGGER.info("{} v{} loaded!", QuickCommand.modName, QuickCommand.modVersion);
         minecraftClient = MinecraftClient.getInstance();
         RegisterKeyBinding.Register();
-        RegisterCommands.register();
+        RegisterCommands.registerClientCommands();
         ClientEvent.register();
     }
 }

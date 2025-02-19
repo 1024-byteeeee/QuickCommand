@@ -22,17 +22,29 @@ package top.byteeeee.quickcommand.commands;
 
 //#if MC<11900
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback;
 //#else
 //$$ import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+//$$ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 //#endif
+
 import top.byteeeee.quickcommand.commands.quickcommandcommand.QuickCommandCommand;
+import top.byteeeee.quickcommand.commands.quickcommandcommand.ServerQuickCommandCommand;
 
 public class RegisterCommands {
-    public static void register() {
+    public static void registerClientCommands() {
         //#if MC<11900
         QuickCommandCommand.register(ClientCommandManager.DISPATCHER);
         //#else
         //$$ ClientCommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess) -> QuickCommandCommand.register(dispatcher)));
+        //#endif
+    }
+
+    public static void registerServerCommands() {
+        //#if MC<11900
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> ServerQuickCommandCommand.register(dispatcher));
+        //#else
+        //$$ CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> ServerQuickCommandCommand.register(dispatcher));
         //#endif
     }
 }

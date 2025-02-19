@@ -20,25 +20,28 @@
 
 package top.byteeeee.quickcommand.key;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 
 import org.lwjgl.glfw.GLFW;
+import top.byteeeee.quickcommand.translations.Translator;
 
-import top.byteeeee.quickcommand.translations.TranslationText;
-
+@Environment(EnvType.CLIENT)
 public class RegisterKeyBinding {
+    private static final Translator TR = new Translator("key");
     public static KeyBinding openQuickCommandList;
 
     public static void Register() {
         openQuickCommandList = KeyBindingHelper.registerKeyBinding(
             new KeyBinding(
-                TranslationText.openQuickCommandListKeyBindingName,
+                TR.tr("openQuickCommandListKeyBindingName").getString(),
                 InputUtil.Type.KEYSYM,
                 GLFW.GLFW_KEY_U,
-                TranslationText.quickCommandKeyBindingCategory
+                TR.tr("category").getString()
             )
         );
     }

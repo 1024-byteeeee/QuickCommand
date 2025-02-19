@@ -2,7 +2,7 @@
  * This file is part of the QuickCommand project, licensed under the
  * GNU Lesser General Public License v3.0
  *
- * Copyright (C) 2024 1024_byteeeee and contributors
+ * Copyright (C) 2025 1024_byteeeee and contributors
  *
  * QuickCommand is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
@@ -18,21 +18,25 @@
  * along with QuickCommand. If not, see <https://www.gnu.org/licenses/>.
  */
 
-package top.byteeeee.quickcommand.mixin.translation;
+package top.byteeeee.quickcommand.utils;
 
-import net.minecraft.client.resource.language.LanguageManager;
+import net.minecraft.util.Identifier;
 
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+@SuppressWarnings("unused")
+public class IdentifierUtil {
+	public static Identifier of(String namespace, String path) {
+		//#if MC>=12100
+		//$$ return Identifier.of(namespace, path);
+		//#else
+		return new Identifier(namespace, path);
+		//#endif
+	}
 
-import top.byteeeee.quickcommand.translations.TranslationText;
-
-@Mixin(LanguageManager.class)
-public abstract class LanguageManagerMixin {
-    @Inject(method = "reload", at = @At("TAIL"))
-    private void reloadTranslationText(CallbackInfo ci) {
-        TranslationText.reloadTranslations();
-    }
+	public static Identifier ofId(String id) {
+		//#if MC>=12100
+		//$$ return Identifier.of(id);
+		//#else
+		return new Identifier(id);
+		//#endif
+	}
 }
