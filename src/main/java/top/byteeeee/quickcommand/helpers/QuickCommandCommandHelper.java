@@ -32,7 +32,7 @@ import top.byteeeee.quickcommand.utils.Messenger;
 
 import java.util.*;
 
-public class CommandHelper {
+public class QuickCommandCommandHelper {
     private static final Translator translator = new Translator("command");
     public static final Map<String, String> QUICK_COMMAND_MAP = new LinkedHashMap<>();
     private static final String MSG_HEAD = EnvironmentHelper.isServer() ? "§b<ServerQuickCommand>§r " : "§b<QuickCommand>§r ";
@@ -183,6 +183,7 @@ public class CommandHelper {
             .append(translator.tr("listWithRunHelpText")).append(Messenger.endl())
             .append(translator.tr("swapHelpText")).append(Messenger.endl())
             .append(translator.tr("displayCommandInListHelpText")).append(Messenger.endl())
+            .append(translator.tr("languageHelpText")).append(Messenger.endl())
             .append(translator.tr("helpHelpText")),
             false
         );

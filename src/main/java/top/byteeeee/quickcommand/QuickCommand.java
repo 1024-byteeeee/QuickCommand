@@ -28,7 +28,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import top.byteeeee.quickcommand.commands.RegisterCommands;
-import top.byteeeee.quickcommand.helpers.CommandHelper;
+import top.byteeeee.quickcommand.helpers.QuickCommandCommandHelper;
 import top.byteeeee.quickcommand.helpers.EnvironmentHelper;
 import top.byteeeee.quickcommand.translations.TranslationLoader;
 
@@ -52,6 +52,6 @@ public class QuickCommand implements ModInitializer {
 
 	public void onServerLoadedWorlds(MinecraftServer server) {
 		minecraftServer = server;
-		CommandHelper.refreshListMemory();
+		QuickCommandCommandHelper.refreshListMemory();
 	}
 }

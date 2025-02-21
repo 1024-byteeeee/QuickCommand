@@ -29,7 +29,7 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 import net.minecraft.command.CommandSource;
 import net.minecraft.server.command.ServerCommandSource;
 
-import top.byteeeee.quickcommand.helpers.CommandHelper;
+import top.byteeeee.quickcommand.helpers.QuickCommandCommandHelper;
 
 import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
@@ -39,12 +39,12 @@ public class ServerQuickCommandCommand {
 
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(literal("serverQuickCommand")
-            .executes(context -> CommandHelper.showListWithRun(context.getSource().getPlayer()))
+            .executes(context -> QuickCommandCommandHelper.showListWithRun(context.getSource().getPlayer()))
             // add
             .then(literal("add")
             .then(argument("name", StringArgumentType.string())
             .then(argument("command", StringArgumentType.string())
-            .executes(context -> CommandHelper.add(
+            .executes(context -> QuickCommandCommandHelper.add(
                 context.getSource().getPlayer(),
                 StringArgumentType.getString(context, "name"),
                 StringArgumentType.getString(context, "command")
@@ -53,34 +53,34 @@ public class ServerQuickCommandCommand {
             // remove
             .then(literal("remove")
             .then(argument("name", StringArgumentType.string())
-            .executes(context -> CommandHelper.remove(
+            .executes(context -> QuickCommandCommandHelper.remove(
                 context.getSource().getPlayer(),
                 StringArgumentType.getString(context, "name")
             ))))
 
             // removeAll
             .then(literal("removeAll")
-            .executes(context -> CommandHelper.initiateRemoveAll(context.getSource().getPlayer()))
+            .executes(context -> QuickCommandCommandHelper.initiateRemoveAll(context.getSource().getPlayer()))
             .then(literal("confirm")
-            .executes(context -> CommandHelper.confirmRemoveAll(context.getSource().getPlayer()))))
+            .executes(context -> QuickCommandCommandHelper.confirmRemoveAll(context.getSource().getPlayer()))))
 
             // displayCommandInList
             .then(literal("displayCommandInList")
             .then(argument("value", BoolArgumentType.bool())
-            .executes(context -> CommandHelper.setDisplayCommandInList(
+            .executes(context -> QuickCommandCommandHelper.setDisplayCommandInList(
                 context.getSource().getPlayer(),
                 BoolArgumentType.getBool(context, "value")
             ))))
 
             // listWithRun
             .then(literal("listWithRun")
-            .executes(context -> CommandHelper.showListWithRun(context.getSource().getPlayer())))
+            .executes(context -> QuickCommandCommandHelper.showListWithRun(context.getSource().getPlayer())))
 
             // swap
             .then(literal("swap")
             .then(argument("index1", IntegerArgumentType.integer(1))
             .then(argument("index2", IntegerArgumentType.integer(1))
-            .executes(context -> CommandHelper.swap(
+            .executes(context -> QuickCommandCommandHelper.swap(
                 context.getSource().getPlayer(),
                 IntegerArgumentType.getInteger(context, "index1"),
                 IntegerArgumentType.getInteger(context, "index2")
@@ -88,13 +88,13 @@ public class ServerQuickCommandCommand {
 
             // help
             .then(literal("help")
-            .executes(context -> CommandHelper.help(context.getSource().getPlayer())))
+            .executes(context -> QuickCommandCommandHelper.help(context.getSource().getPlayer())))
 
             // language
             .then(literal("language")
             .then(argument("language", StringArgumentType.string())
             .suggests(LANGUAGE_SUGGESTION)
-            .executes(context -> CommandHelper.setLanguage(
+            .executes(context -> QuickCommandCommandHelper.setLanguage(
                 context.getSource().getPlayer(),
                 StringArgumentType.getString(context, "language")
             ))))

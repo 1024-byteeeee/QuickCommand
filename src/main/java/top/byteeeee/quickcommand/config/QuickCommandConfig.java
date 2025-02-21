@@ -30,7 +30,7 @@ import net.minecraft.util.WorldSavePath;
 
 import top.byteeeee.quickcommand.QuickCommand;
 import top.byteeeee.quickcommand.QuickCommandClient;
-import top.byteeeee.quickcommand.helpers.CommandHelper;
+import top.byteeeee.quickcommand.helpers.QuickCommandCommandHelper;
 import top.byteeeee.quickcommand.helpers.EnvironmentHelper;
 
 import java.io.IOException;
@@ -48,16 +48,16 @@ public class QuickCommandConfig {
     public static void loadFromJson() {
         Gson gson = new Gson();
         Path path = Paths.get(CONFIG_FILE);
-        CommandHelper.QUICK_COMMAND_MAP.clear();
+        QuickCommandCommandHelper.QUICK_COMMAND_MAP.clear();
         if (Files.exists(path)) {
             try {
                 String json = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
                 ConfigData configData = gson.fromJson(json, ConfigData.class);
                 if (configData != null) {
-                    CommandHelper.QUICK_COMMAND_MAP.putAll(configData.commandMap);
-                    CommandHelper.currentLanguage = configData.language != null ? configData.language : "zh_cn";
-                    CommandHelper.QUICK_COMMAND_MAP.putAll(configData.commandMap);
-                    CommandHelper.displayCommandInList = configData.displayCommandInList;
+                    QuickCommandCommandHelper.QUICK_COMMAND_MAP.putAll(configData.commandMap);
+                    QuickCommandCommandHelper.currentLanguage = configData.language != null ? configData.language : "zh_cn";
+                    QuickCommandCommandHelper.QUICK_COMMAND_MAP.putAll(configData.commandMap);
+                    QuickCommandCommandHelper.displayCommandInList = configData.displayCommandInList;
                 }
             } catch (IOException e) {
                 QuickCommandClient.LOGGER.warn("Failed to load config", e);
@@ -69,7 +69,7 @@ public class QuickCommandConfig {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         ConfigData configData = new ConfigData();
         configData.commandMap = new LinkedHashMap<>(commandMap);
-        configData.displayCommandInList = CommandHelper.displayCommandInList;
+        configData.displayCommandInList = QuickCommandCommandHelper.displayCommandInList;
         configData.language = getCurrentLanguage();
         String json = gson.toJson(configData);
         try {
@@ -82,7 +82,7 @@ public class QuickCommandConfig {
     }
 
     public static String getCurrentLanguage() {
-        return CommandHelper.currentLanguage;
+        return QuickCommandCommandHelper.currentLanguage;
     }
 
     public static String getSavePath(MinecraftServer server) {

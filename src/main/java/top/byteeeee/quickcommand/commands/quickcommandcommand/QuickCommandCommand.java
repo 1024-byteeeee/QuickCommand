@@ -28,19 +28,19 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
 import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
 
-import top.byteeeee.quickcommand.helpers.CommandHelper;
+import top.byteeeee.quickcommand.helpers.QuickCommandCommandHelper;
 
 public class QuickCommandCommand {
     public static void register(CommandDispatcher<FabricClientCommandSource> dispatcher) {
         dispatcher.register(
             ClientCommandManager.literal("quickCommand")
-            .executes(context -> CommandHelper.showListWithRun(context.getSource().getPlayer()))
+            .executes(context -> QuickCommandCommandHelper.showListWithRun(context.getSource().getPlayer()))
 
             // add
             .then(ClientCommandManager.literal("add")
             .then(ClientCommandManager.argument("name", StringArgumentType.string())
             .then(ClientCommandManager.argument("command", StringArgumentType.string())
-            .executes(context -> CommandHelper.add(
+            .executes(context -> QuickCommandCommandHelper.add(
                     context.getSource().getPlayer(),
                 StringArgumentType.getString(context, "name"),
                 StringArgumentType.getString(context, "command")
@@ -49,34 +49,34 @@ public class QuickCommandCommand {
             // remove
             .then(ClientCommandManager.literal("remove")
             .then(ClientCommandManager.argument("name", StringArgumentType.string())
-            .executes(context -> CommandHelper.remove(
+            .executes(context -> QuickCommandCommandHelper.remove(
                     context.getSource().getPlayer(),
                 StringArgumentType.getString(context, "name")
             ))))
 
             // removeAll
             .then(ClientCommandManager.literal("removeAll")
-            .executes(context -> CommandHelper.initiateRemoveAll(context.getSource().getPlayer()))
+            .executes(context -> QuickCommandCommandHelper.initiateRemoveAll(context.getSource().getPlayer()))
             .then(ClientCommandManager.literal("confirm")
-            .executes(context -> CommandHelper.confirmRemoveAll(context.getSource().getPlayer()))))
+            .executes(context -> QuickCommandCommandHelper.confirmRemoveAll(context.getSource().getPlayer()))))
 
             // displayCommandInList
             .then(ClientCommandManager.literal("displayCommandInList")
             .then(ClientCommandManager.argument("value", BoolArgumentType.bool())
-            .executes(context -> CommandHelper.setDisplayCommandInList(
+            .executes(context -> QuickCommandCommandHelper.setDisplayCommandInList(
                     context.getSource().getPlayer(),
                 BoolArgumentType.getBool(context, "value")
             ))))
 
             // listWithRun
             .then(ClientCommandManager.literal("listWithRun")
-            .executes(context -> CommandHelper.showListWithRun(context.getSource().getPlayer())))
+            .executes(context -> QuickCommandCommandHelper.showListWithRun(context.getSource().getPlayer())))
 
             // swap
             .then(ClientCommandManager.literal("swap")
             .then(ClientCommandManager.argument("index1", IntegerArgumentType.integer(1))
             .then(ClientCommandManager.argument("index2", IntegerArgumentType.integer(1))
-            .executes(context -> CommandHelper.swap(
+            .executes(context -> QuickCommandCommandHelper.swap(
                 context.getSource().getPlayer(),
                 IntegerArgumentType.getInteger(context, "index1"),
                 IntegerArgumentType.getInteger(context, "index2")
@@ -84,7 +84,7 @@ public class QuickCommandCommand {
 
             // help
             .then(ClientCommandManager.literal("help")
-            .executes(context -> CommandHelper.help(context.getSource().getPlayer())))
+            .executes(context -> QuickCommandCommandHelper.help(context.getSource().getPlayer())))
         );
     }
 }

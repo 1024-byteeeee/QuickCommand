@@ -26,7 +26,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.gui.screen.ChatScreen;
 
 import top.byteeeee.quickcommand.config.QuickCommandConfig;
-import top.byteeeee.quickcommand.helpers.CommandHelper;
+import top.byteeeee.quickcommand.helpers.QuickCommandCommandHelper;
 import top.byteeeee.quickcommand.key.RegisterKeyBinding;
 
 
@@ -39,7 +39,7 @@ public class ClientEvent {
                 if (client.player != null) {
                     ChatScreen chatScreen = new ChatScreen("");
                     client.openScreen(chatScreen);
-                    CommandHelper.showListWithRun(client.player);
+                    QuickCommandCommandHelper.showListWithRun(client.player);
                 }
             }
         });
