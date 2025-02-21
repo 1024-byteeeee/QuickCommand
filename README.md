@@ -2,6 +2,7 @@
 **中文** **|** [**English**](README_en.md)
 
 这是一个用于在游戏中快速、连续地执行多条任意指令的模组，该模组所有的指令都可以在聊天框中点击对应按钮来执行。
+它可以作为一个服务端模组提供所有玩家共享的快捷指令，服务端安装后，您只需要使用/serverQuickCommand命令即可控制服务端的快捷指令，配置文件储存在服务器存档文件夹中。
 
 ![zh_cn_example_img](src/main/resources/assets/quickcommand/img/zh_cn_example_img.png)
 
@@ -37,5 +38,7 @@
   - 调换序号<index1>与序号<index2>在列表中的显示位置。
 - **/quickCommand displayCommandInList <true/false>**
   - 是否在列表中显示指令。
+- **/quickCommand language <en_us/zh_cn>**
+  - 设置语言。
 - **/quickCommand help**
   - 查看模组使用说明。
