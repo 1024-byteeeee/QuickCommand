@@ -1,7 +1,7 @@
 # QuickCommand
 [**中文**](README.md) **|** **[English]**
 
-This is a mod for quickly and consecutively executing multiple arbitrary commands in the game. All commands can be executed by clicking the corresponding buttons in the chat box.
+This is a mod for quickly and consecutively executing multiple arbitrary commands in the game. All commands can be executed by clicking the corresponding buttons in the chat box.<br/>
 It can serve as a server mod to provide shared quick commands for all players. Once installed on the server, you only need to use the /serverQuickCommand command to control the server's quick commands. The configuration files are stored in the server's save folder.
 
 ![en_us_example_img](src/main/resources/assets/quickcommand/img/en_us_example_img.png)

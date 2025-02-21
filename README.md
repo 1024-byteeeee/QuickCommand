@@ -1,7 +1,7 @@
 # QuickCommand - 快捷指令
 **中文** **|** [**English**](README_en.md)
 
-这是一个用于在游戏中快速、连续地执行多条任意指令的模组，该模组所有的指令都可以在聊天框中点击对应按钮来执行。
+这是一个用于在游戏中快速、连续地执行多条任意指令的模组，该模组所有的指令都可以在聊天框中点击对应按钮来执行。<br/>
 它可以作为一个服务端模组提供所有玩家共享的快捷指令，服务端安装后，您只需要使用/serverQuickCommand命令即可控制服务端的快捷指令，配置文件储存在服务器存档文件夹中。
 
 ![zh_cn_example_img](src/main/resources/assets/quickcommand/img/zh_cn_example_img.png)
