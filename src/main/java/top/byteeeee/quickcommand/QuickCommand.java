@@ -24,14 +24,21 @@ import net.fabricmc.api.ModInitializer;
 
 import net.minecraft.server.MinecraftServer;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import top.byteeeee.quickcommand.commands.RegisterCommands;
 import top.byteeeee.quickcommand.helpers.CommandHelper;
+import top.byteeeee.quickcommand.helpers.EnvironmentHelper;
+import top.byteeeee.quickcommand.translations.TranslationLoader;
 
 public class QuickCommand implements ModInitializer {
-	public static final String modName = "QuickCommand";
+	public static final String modName = EnvironmentHelper.isServer() ? "ServerQuickCommand" : "QuickCommand";
+	public static final String modId = "quickcommand";
 	public static final String modVersion = "1.1.0";
 	public MinecraftServer minecraftServer;
 	private static final QuickCommand INSTANCE = new QuickCommand();
+	public static final Logger LOGGER = LogManager.getLogger(QuickCommand.modName);
 
 	public static QuickCommand getInstance() {
 		return INSTANCE;
@@ -39,6 +46,7 @@ public class QuickCommand implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		TranslationLoader.loadTranslations();
 		RegisterCommands.registerServerCommands();
 	}
 

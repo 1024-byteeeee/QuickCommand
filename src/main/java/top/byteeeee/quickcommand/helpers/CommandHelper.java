@@ -21,6 +21,8 @@
 package top.byteeeee.quickcommand.helpers;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
 import top.byteeeee.quickcommand.QuickCommand;
@@ -33,9 +35,10 @@ import java.util.*;
 public class CommandHelper {
     private static final Translator translator = new Translator("command");
     public static final Map<String, String> QUICK_COMMAND_MAP = new LinkedHashMap<>();
-    private static final String MSG_HEAD = "§b<QuickCommand>§r ";
+    private static final String MSG_HEAD = EnvironmentHelper.isServer() ? "§b<ServerQuickCommand>§r " : "§b<QuickCommand>§r ";
     public static boolean awaitingConfirmation = false;
     public static boolean displayCommandInList = false;
+    public static String currentLanguage = "zh_cn";
 
     public static int add(PlayerEntity player, String name, String command) {
         if (!QUICK_COMMAND_MAP.containsKey(name)) {
@@ -114,18 +117,18 @@ public class CommandHelper {
         for (Map.Entry<String, String> entry : QUICK_COMMAND_MAP.entrySet()) {
             String name = entry.getKey();
             String command = entry.getValue();
-            player.sendMessage(
-                Messenger.s("")
-                .append(Messenger.s("[" + counter + "] ").formatted(Formatting.GOLD))
+            MutableText message =
+                Messenger.s("[" + counter + "] ")
+                .formatted(Formatting.GOLD)
                 .append(QuickCommandButton.runCommandButton(command))
                 .append(QuickCommandButton.removeCommandButton(name))
                 .append(QuickCommandButton.copyButton(command))
                 .append(translator.tr("commandName").formatted(Formatting.YELLOW))
-                .append(Messenger.s(name + " ").formatted(Formatting.GOLD))
-                .append(displayCommandInList ? translator.tr("command").formatted(Formatting.YELLOW) : Messenger.s(""))
-                .append(displayCommandInList ? Messenger.s(command).formatted(Formatting.GOLD) : Messenger.s("")),
-                false
-            );
+                .append(Messenger.s(name + " ").formatted(Formatting.GOLD));
+            if (displayCommandInList) {
+                message.append(translator.tr("command").formatted(Formatting.YELLOW)).append(Messenger.s(command).formatted(Formatting.GOLD));
+            }
+            player.sendMessage(message, false);
             counter++;
         }
         final String displayCommandInListMsgLine = "-----------------------------";
@@ -193,5 +196,17 @@ public class CommandHelper {
 
     public static void saveToJson() {
         QuickCommandConfig.saveToJson(QUICK_COMMAND_MAP);
+    }
+
+    public static int setLanguage(ServerPlayerEntity player, String language) {
+        List<String> availableLanguages = Arrays.asList("zh_cn", "en_us");
+        if (!availableLanguages.contains(language)) {
+            return 0;
+        }
+        currentLanguage = language;
+        QuickCommandConfig.saveToJson(QUICK_COMMAND_MAP);
+        refreshListMemory();
+        showListWithRun(player);
+        return 1;
     }
 }

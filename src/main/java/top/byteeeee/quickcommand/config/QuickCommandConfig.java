@@ -55,6 +55,8 @@ public class QuickCommandConfig {
                 ConfigData configData = gson.fromJson(json, ConfigData.class);
                 if (configData != null) {
                     CommandHelper.QUICK_COMMAND_MAP.putAll(configData.commandMap);
+                    CommandHelper.currentLanguage = configData.language != null ? configData.language : "zh_cn";
+                    CommandHelper.QUICK_COMMAND_MAP.putAll(configData.commandMap);
                     CommandHelper.displayCommandInList = configData.displayCommandInList;
                 }
             } catch (IOException e) {
@@ -68,6 +70,7 @@ public class QuickCommandConfig {
         ConfigData configData = new ConfigData();
         configData.commandMap = new LinkedHashMap<>(commandMap);
         configData.displayCommandInList = CommandHelper.displayCommandInList;
+        configData.language = getCurrentLanguage();
         String json = gson.toJson(configData);
         try {
             Path path = Paths.get(CONFIG_FILE);
@@ -78,6 +81,10 @@ public class QuickCommandConfig {
         }
     }
 
+    public static String getCurrentLanguage() {
+        return CommandHelper.currentLanguage;
+    }
+
     public static String getSavePath(MinecraftServer server) {
         return server.getSavePath(WorldSavePath.ROOT).resolve("quickCommand/quickCommand" + ".json").toString();
     }
@@ -85,5 +92,6 @@ public class QuickCommandConfig {
     private static class ConfigData {
         Map<String, String> commandMap = new LinkedHashMap<>();
         boolean displayCommandInList;
+        String language = "zh_cn";
     }
 }

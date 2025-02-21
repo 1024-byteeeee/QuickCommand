@@ -24,7 +24,9 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.suggestion.SuggestionProvider;
 
+import net.minecraft.command.CommandSource;
 import net.minecraft.server.command.ServerCommandSource;
 
 import top.byteeeee.quickcommand.helpers.CommandHelper;
@@ -33,6 +35,8 @@ import static net.minecraft.server.command.CommandManager.argument;
 import static net.minecraft.server.command.CommandManager.literal;
 
 public class ServerQuickCommandCommand {
+    private static final SuggestionProvider<ServerCommandSource> LANGUAGE_SUGGESTION = (context, builder) -> CommandSource.suggestMatching(new String[]{"en_us", "zh_cn"}, builder);
+
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(literal("serverQuickCommand")
             .executes(context -> CommandHelper.showListWithRun(context.getSource().getPlayer()))
@@ -85,6 +89,15 @@ public class ServerQuickCommandCommand {
             // help
             .then(literal("help")
             .executes(context -> CommandHelper.help(context.getSource().getPlayer())))
+
+            // language
+            .then(literal("language")
+            .then(argument("language", StringArgumentType.string())
+            .suggests(LANGUAGE_SUGGESTION)
+            .executes(context -> CommandHelper.setLanguage(
+                context.getSource().getPlayer(),
+                StringArgumentType.getString(context, "language")
+            ))))
         );
     }
 }

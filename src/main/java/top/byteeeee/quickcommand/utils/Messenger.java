@@ -29,6 +29,7 @@ public class Messenger {
         return MessengerCompatFactory.LiteralText(text.toString());
     }
 
+    @SuppressWarnings("unused")
     public static BaseText tr(String key, Object... args) {
         return MessengerCompatFactory.TranslatableText(key, args);
     }

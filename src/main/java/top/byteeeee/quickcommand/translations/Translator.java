@@ -22,7 +22,12 @@ package top.byteeeee.quickcommand.translations;
 
 import net.minecraft.text.BaseText;
 
+import top.byteeeee.quickcommand.helpers.CommandHelper;
+import top.byteeeee.quickcommand.helpers.EnvironmentHelper;
 import top.byteeeee.quickcommand.utils.Messenger;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Translator {
     private final String translationPath;
@@ -32,11 +37,10 @@ public class Translator {
     }
 
     public BaseText tr(String key, Object... args) {
-        String translationKey = "QuickCommand" + "." + translationPath + "." + key;
-        BaseText translatedText = Messenger.tr(translationKey, args);
-        if (translatedText.getString().equals(translationKey)) {
-            return Messenger.tr("QuickCommand." + translationPath + "." + key, args); // 使用英文回退
-        }
-        return translatedText;
+        String fullKey = EnvironmentHelper.isServer() ? "QuickCommand." + translationPath + "." + "server_" + key : "QuickCommand." + translationPath + "." + key;
+        String lang = CommandHelper.currentLanguage;
+        Map<String, String> translations = TranslationLoader.TRANSLATIONS.getOrDefault(lang, new ConcurrentHashMap<>());
+        String template = translations.getOrDefault(fullKey, fullKey);
+        return Messenger.s(String.format(template, args));
     }
 }
