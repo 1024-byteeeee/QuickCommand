@@ -20,12 +20,12 @@ Integrated a shortcut key to quickly open the interface in the chat box, default
 
 - **/quickCommand**
   - Open the quick command list.
-- **/quickCommand add <name> <command>**
-  - Add a quick command named <name> with command <command>.
+- **/quickCommand add &lt;name&gt; &lt;command&gt;**
+  - Add a quick command named &lt;name&gt; with command &lt;command&gt;.
   - Example: /quickCommand add "Execute /seed" "/seed"
     - Add a quick command to execute /seed.
-- **/quickCommand remove <name>**
-  - Remove the quick command named <name>.
+- **/quickCommand remove &lt;name&gt;**
+  - Remove the quick command named &lt;name&gt;.
   - Example: /quickCommand remove "Execute /seed"
     - Remove the quick command named \"execute /seed command\".
 - **/quickCommand removeAll**
@@ -34,11 +34,11 @@ Integrated a shortcut key to quickly open the interface in the chat box, default
   - Confirm to remove all quick commands.
 - **/quickCommand listWithRun**
   - Open the quick command list.
-- **/quickCommand swap <index1> <index2>**
-  - Swap the display positions of <index1> and <index2> in the list.
-- **/quickCommand displayCommandInList <true/false>**
+- **/quickCommand swap &lt;index1&gt; &lt;index2&gt;**
+  - Swap the display positions of &lt;index1&gt; and &lt;index2&gt; in the list.
+- **/quickCommand displayCommandInList &lt;true/false&gt;**
   - Whether to display commands in the list.
-- **/quickCommand language <en_us/zh_cn>**
+- **/quickCommand language [en_us/zh_cn]**
   - Set language.
 - **/quickCommand help**
   - View the mod usage instructions.

@@ -85,6 +85,6 @@
   "QuickCommand.command.server_listWithRunHelpText": "§7/serverQuickCommand listWithRun §bOpen the quick command list",
   "QuickCommand.command.server_swapHelpText": "§7/serverQuickCommand swap <index1> <index2> §bSwap the display positions of <index1> and <index2> in the list",
   "QuickCommand.command.server_displayCommandInListHelpText": "§7/serverQuickCommand displayCommandInList <true/false> §bWhether to display commands in the list",
-  "QuickCommand.command.server_languageHelpText": "§7/serverQuickCommand language <en_us/zh_cn> §bSet language",
+  "QuickCommand.command.server_languageHelpText": "§7/serverQuickCommand language [en_us/zh_cn] §bSet language",
   "QuickCommand.command.server_helpHelpText": "§7/serverQuickCommand help §bView the mod usage instructions"
 }

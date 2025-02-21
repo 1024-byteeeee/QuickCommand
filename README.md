@@ -20,12 +20,12 @@
 
 - **/quickCommand**
   - 打开快捷指令列表。
-- **/quickCommand add <name> <command>**
-  - 添加一条名为<name>指令为<command>的快捷指令。
+- **/quickCommand add &lt;name&gt; &lt;command&gt;**
+  - 添加一条名为&lt;name&gt;指令为&lt;command&gt;的快捷指令。
   - 例：/quickCommand add "执行/seed指令" "/seed" 
     - 添加执行/seed的快捷指令。
-- **/quickCommand remove <name>**
-  - 删除名为<name>的快捷指令。
+- **/quickCommand remove &lt;name&gt;**
+  - 删除名为&lt;name&gt;的快捷指令。
   - 例：/quickCommand remove "执行/seed指令"
     - 删除名为"执行/seed指令的快捷指令"
 - **/quickCommand removeAll**
@@ -34,11 +34,11 @@
   - 二次确认是否删除所有快捷指令。
 - **/quickCommand listWithRun**
   - 打开快捷指令列表。
-- **/quickCommand swap <index1> <index2>**
-  - 调换序号<index1>与序号<index2>在列表中的显示位置。
-- **/quickCommand displayCommandInList <true/false>**
+- **/quickCommand swap &lt;index1&gt; &lt;index2&gt;**
+  - 调换序号&lt;index1&gt;与序号&lt;index2&gt;在列表中的显示位置。
+- **/quickCommand displayCommandInList &lt;true/false&gt;**
   - 是否在列表中显示指令。
-- **/quickCommand language <en_us/zh_cn>**
+- **/quickCommand language [en_us/zh_cn]**
   - 设置语言。
 - **/quickCommand help**
   - 查看模组使用说明。

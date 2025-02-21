@@ -85,7 +85,7 @@
   "QuickCommand.command.server_listWithRunHelpText": "§7/serverQuickCommand listWithRun §b打开快捷指令列表",
   "QuickCommand.command.server_swapHelpText": "§7/serverQuickCommand swap <index1> <index2> §b调换序号<index1>与序号<index2>在列表中的显示位置",
   "QuickCommand.command.server_displayCommandInListHelpText": "§7/quickCommand displayCommandInList <true/false> §b是否在列表中显示指令",
-  "QuickCommand.command.server_languageHelpText": "§7/serverQuickCommand language <en_us/zh_cn> §b设置语言",
+  "QuickCommand.command.server_languageHelpText": "§7/serverQuickCommand language [en_us/zh_cn] §b设置语言",
   "QuickCommand.command.server_helpHelpText": "§7/serverQuickCommand help §b查看模组使用说明"
 }
 
