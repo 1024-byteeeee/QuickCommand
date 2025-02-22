@@ -142,4 +142,26 @@ public class QuickCommandButton {
                 withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
             );
     }
+
+    public static Text setChineseButton() {
+        String command = cmd() + "language zh_cn";
+        Text hoverText = translator.tr("setChineseHoverText").formatted(Formatting.YELLOW);
+        return
+            Messenger.s("[中文]").setStyle(
+                Style.EMPTY.withColor(Formatting.AQUA).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, command)).
+                withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
+            );
+    }
+
+    public static Text setEnglishButton() {
+        String command = cmd() + "language en_us";
+        Text hoverText = translator.tr("setEnglishHoverText").formatted(Formatting.YELLOW);
+        return
+            Messenger.s("[English]").setStyle(
+                Style.EMPTY.withColor(Formatting.AQUA).
+                withClickEvent(ClickEventUtil.event(ClickEventUtil.RUN_COMMAND, command)).
+                withHoverEvent(HoverEventUtil.event(HoverEventUtil.SHOW_TEXT, hoverText))
+            );
+    }
 }

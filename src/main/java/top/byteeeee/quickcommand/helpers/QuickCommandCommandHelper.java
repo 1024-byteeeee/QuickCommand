@@ -108,6 +108,14 @@ public class QuickCommandCommandHelper {
             ).formatted(Formatting.AQUA, Formatting.BOLD),
             false
         );
+        player.sendMessage(
+            translator.tr("setLanguageTitle").formatted(Formatting.LIGHT_PURPLE)
+            .append(Messenger.endl())
+            .append(QuickCommandButton.setChineseButton())
+            .append(Messenger.s(" | ").formatted(Formatting.AQUA))
+            .append(QuickCommandButton.setEnglishButton())
+            .append(Messenger.endl()), false
+        );
         player.sendMessage(translator.tr("commandListTitle").formatted(Formatting.LIGHT_PURPLE), false);
         if (QUICK_COMMAND_MAP.isEmpty()) {
             player.sendMessage(Messenger.s("··· ··· ···").formatted(Formatting.AQUA), false);
@@ -139,7 +147,8 @@ public class QuickCommandCommandHelper {
             .append(QuickCommandButton.setDisplayCommandInListYesButton())
             .append(QuickCommandButton.setDisplayCommandInListNoButton())
             .append(Messenger.endl())
-            .append(Messenger.s(displayCommandInListMsgLine)),
+            .append(Messenger.s(displayCommandInListMsgLine))
+            .append(Messenger.endl()),
             false
         );
         player.sendMessage(

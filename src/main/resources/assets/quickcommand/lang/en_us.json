@@ -27,6 +27,8 @@
   "QuickCommand.button.helpButtonText": ">>> Instructions for Use <<<",
   "QuickCommand.button.setDisplayCommandInListYesButtonHoverText": "display",
   "QuickCommand.button.setDisplayCommandInListNoButtonHoverText": "hide",
+  "QuickCommand.button.setChineseHoverText": "中文",
+  "QuickCommand.button.setEnglishHoverText": "English",
   "QuickCommand.key.category": "§b§lQuickCommand",
   "QuickCommand.key.openQuickCommandListKeyBindingName": "§bOpen quick command list",
   "QuickCommand.command.setDisplayCommandInListButtonTitleText": "Display command in list ",
@@ -42,6 +44,7 @@
   "QuickCommand.command.swapHelpText": "§7/quickCommand swap <index1> <index2> §bSwap the display positions of <index1> and <index2> in the list",
   "QuickCommand.command.displayCommandInListHelpText": "§7/quickCommand displayCommandInList <true/false> §bWhether to display commands in the list",
   "QuickCommand.command.helpHelpText": "§7/quickCommand help §bView the mod usage instructions",
+  "QuickCommand.command.setLanguageTitle": "[Language]",
 
   "QuickCommand.command.server_commandName": "Name: ",
   "QuickCommand.command.server_command": "Command: ",
@@ -71,6 +74,8 @@
   "QuickCommand.button.server_helpButtonText": ">>> Instructions for Use <<<",
   "QuickCommand.button.server_setDisplayCommandInListYesButtonHoverText": "display",
   "QuickCommand.button.server_setDisplayCommandInListNoButtonHoverText": "hide",
+  "QuickCommand.button.server_setChineseHoverText": "中文",
+  "QuickCommand.button.server_setEnglishHoverText": "English",
   "QuickCommand.key.server_category": "§b§lQuickCommand",
   "QuickCommand.key.server_openQuickCommandListKeyBindingName": "§bOpen quick command list",
   "QuickCommand.command.server_setDisplayCommandInListButtonTitleText": "Display command in list ",
@@ -86,5 +91,6 @@
   "QuickCommand.command.server_swapHelpText": "§7/serverQuickCommand swap <index1> <index2> §bSwap the display positions of <index1> and <index2> in the list",
   "QuickCommand.command.server_displayCommandInListHelpText": "§7/serverQuickCommand displayCommandInList <true/false> §bWhether to display commands in the list",
   "QuickCommand.command.server_languageHelpText": "§7/serverQuickCommand language [en_us/zh_cn] §bSet language",
-  "QuickCommand.command.server_helpHelpText": "§7/serverQuickCommand help §bView the mod usage instructions"
+  "QuickCommand.command.server_helpHelpText": "§7/serverQuickCommand help §bView the mod usage instructions",
+  "QuickCommand.command.server_setLanguageTitle": "[Language]"
 }
