@@ -85,6 +85,15 @@ public class QuickCommandCommand {
             // help
             .then(ClientCommandManager.literal("help")
             .executes(context -> QuickCommandCommandHelper.help(context.getSource().getPlayer())))
+
+            // language
+            .then(ClientCommandManager.literal("language")
+            .then(ClientCommandManager.argument("language", StringArgumentType.string())
+            .suggests(QuickCommandCommandHelper.CLIENT_LANGUAGE_SUGGESTION)
+            .executes(context -> QuickCommandCommandHelper.setLanguage(
+                context.getSource().getPlayer(),
+                StringArgumentType.getString(context, "language")
+            ))))
         );
     }
 }

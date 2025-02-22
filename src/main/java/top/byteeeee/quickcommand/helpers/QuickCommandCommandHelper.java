@@ -20,8 +20,12 @@
 
 package top.byteeeee.quickcommand.helpers;
 
+import com.mojang.brigadier.suggestion.SuggestionProvider;
+
+import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.minecraft.command.CommandSource;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.text.MutableText;
 import net.minecraft.util.Formatting;
 
@@ -34,6 +38,8 @@ import java.util.*;
 
 public class QuickCommandCommandHelper {
     private static final Translator translator = new Translator("command");
+    public static final SuggestionProvider<ServerCommandSource> SERVER_LANGUAGE_SUGGESTION = (context, builder) -> CommandSource.suggestMatching(new String[]{"en_us", "zh_cn"}, builder);
+    public static final SuggestionProvider<FabricClientCommandSource> CLIENT_LANGUAGE_SUGGESTION = (context, builder) -> CommandSource.suggestMatching(new String[]{"en_us", "zh_cn"}, builder);
     public static final Map<String, String> QUICK_COMMAND_MAP = new LinkedHashMap<>();
     private static final String MSG_HEAD = EnvironmentHelper.isServer() ? "§b<ServerQuickCommand>§r " : "§b<QuickCommand>§r ";
     public static boolean awaitingConfirmation = false;
@@ -108,6 +114,7 @@ public class QuickCommandCommandHelper {
             ).formatted(Formatting.AQUA, Formatting.BOLD),
             false
         );
+
         player.sendMessage(
             translator.tr("setLanguageTitle").formatted(Formatting.LIGHT_PURPLE)
             .append(Messenger.endl())
@@ -116,6 +123,7 @@ public class QuickCommandCommandHelper {
             .append(QuickCommandButton.setEnglishButton())
             .append(Messenger.endl()), false
         );
+
         player.sendMessage(translator.tr("commandListTitle").formatted(Formatting.LIGHT_PURPLE), false);
         if (QUICK_COMMAND_MAP.isEmpty()) {
             player.sendMessage(Messenger.s("··· ··· ···").formatted(Formatting.AQUA), false);
@@ -139,6 +147,7 @@ public class QuickCommandCommandHelper {
             player.sendMessage(message, false);
             counter++;
         }
+
         final String displayCommandInListMsgLine = "-----------------------------";
         player.sendMessage(
             Messenger.s(displayCommandInListMsgLine).formatted(Formatting.DARK_AQUA)
@@ -151,6 +160,7 @@ public class QuickCommandCommandHelper {
             .append(Messenger.endl()),
             false
         );
+
         player.sendMessage(
             translator.tr("easyOperation").formatted(Formatting.LIGHT_PURPLE).append(Messenger.endl())
             .append(QuickCommandButton.addCommandButton()).append(Messenger.endl())
@@ -208,7 +218,7 @@ public class QuickCommandCommandHelper {
         QuickCommandConfig.saveToJson(QUICK_COMMAND_MAP);
     }
 
-    public static int setLanguage(ServerPlayerEntity player, String language) {
+    public static int setLanguage(PlayerEntity player, String language) {
         List<String> availableLanguages = Arrays.asList("zh_cn", "en_us");
         if (!availableLanguages.contains(language)) {
             return 0;
