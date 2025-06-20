@@ -35,7 +35,7 @@ import top.byteeeee.quickcommand.translations.TranslationLoader;
 public class QuickCommand implements ModInitializer {
 	public static final String modName = EnvironmentHelper.isServer() ? "ServerQuickCommand" : "QuickCommand";
 	public static final String modId = "quickcommand";
-	public static final String modVersion = "1.1.1";
+	public static final String modVersion = "1.1.2";
 	public MinecraftServer minecraftServer;
 	private static final QuickCommand INSTANCE = new QuickCommand();
 	public static final Logger LOGGER = LogManager.getLogger(QuickCommand.modName);
