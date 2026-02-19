@@ -20,6 +20,9 @@
 
 package top.byteeeee.quickcommand.mixin;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+
 import net.minecraft.server.MinecraftServer;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,6 +32,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import top.byteeeee.quickcommand.QuickCommand;
 
+@Environment(EnvType.SERVER)
 @Mixin(MinecraftServer.class)
 public abstract class MinecraftServerMixin {
     @Inject(method = "loadWorld", at = @At("TAIL"))
